@@ -6,7 +6,7 @@ Article for this repository:
 ...coming soon
 
 ## Getting Started
-You can import the module by using: 
+Module Install: 
 
 Via the PowerShell Gallery:
 
