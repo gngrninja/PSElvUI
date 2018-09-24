@@ -2,7 +2,7 @@
 This module provides an easy way to update/install ElvUI.
 Currently only working on Windows!
 
-Article for this repository is here:
+Article for this repository:
 ...coming soon
 
 ## Getting Started
@@ -30,6 +30,7 @@ Get-Help Invoke-ElvUICheck -Detailed
 ```
 ...to get all the help goodness.
 
+## Help / Examples
 Check for update/update if available:
 ```powershell
 Invoke-ElvUICheck 
