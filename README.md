@@ -36,7 +36,7 @@ Check for update only, don't do anything else
 Invoke-ElvUICheck -OnlyCheck
 ```
 
-Check for update/update if available, or install of not found:
+Check for update/update if available, or install if not found:
 ```powershell
 Invoke-ElvUICheck -InstallIfDoesntExist
 ```
