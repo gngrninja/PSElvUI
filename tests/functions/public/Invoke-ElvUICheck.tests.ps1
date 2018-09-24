@@ -25,6 +25,10 @@ InModuleScope PSElvUi {
         mock Invoke-ElvCleanup {
 
         }
+
+        mock Invoke-ElvUiInstall {
+
+        }
     
         it 'Properly handles a version upgrade' {        
         
@@ -45,8 +49,9 @@ InModuleScope PSElvUi {
 
             Assert-MockCalled -CommandName 'Get-LocalElvUiVersion'
             Assert-MockCalled -CommandName 'Get-RemoteElvUiVersion'
-            Assert-MockCalled -CommandName 'Invoke-ElvFileWrite'
-            Assert-MockCalled -CommandName 'Invoke-ElvCleanup'
+            Assert-MockCalled -CommandName 'Invoke-ElvUiInstall' -Times 1 -Scope It
+            #Assert-MockCalled -CommandName 'Invoke-ElvFileWrite'
+            Assert-MockCalled -CommandName 'Invoke-ElvCleanup'            
 
         }
 
@@ -69,9 +74,18 @@ InModuleScope PSElvUi {
 
             Assert-MockCalled -CommandName 'Get-LocalElvUiVersion'
             Assert-MockCalled -CommandName 'Get-RemoteElvUiVersion'
-            Assert-MockCalled -CommandName 'Invoke-ElvFileWrite' -Times 0 -Scope It
-            Assert-MockCalled -CommandName 'Invoke-ElvCleanup' -Times 0 -Scope It
+            Assert-MockCalled -CommandName 'Invoke-ElvUiInstall' -Times 0 -Scope It     
 
+
+        }
+
+        it 'Does nothing but check for version is -OnlyCheck is specified' {
+
+            Invoke-ElvUICheck -OnlyCheck
+
+            Assert-MockCalled -CommandName 'Invoke-ElvFileWrite' -Times 0 -Scope It
+            Assert-MockCalled -CommandName 'Invoke-ElvUiInstall' -Times 0 -Scope It  
+                        
         }
     }
 }

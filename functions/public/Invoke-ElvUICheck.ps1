@@ -1,4 +1,40 @@
 function Invoke-ElvUiCheck {
+      <#
+    .SYNOPSIS
+
+    Invoke-ElvUiCheck
+    Updates / Installs / Checks for latest ElvUI version
+
+    .DESCRIPTION
+
+    This function will check for / install the latest ElvUI version
+
+    .PARAMETER InstallIfDoesntExist
+
+    If specified, will install ElvUI if it is not found
+
+    .PARAMETER OnlyCheck
+
+    If specified, will only check to see if a newer version is available, but do nothing else
+
+
+    .EXAMPLE
+
+    (check for latest version/update if found)
+    Invoke-ElvUICheck
+
+    .EXAMPLE
+
+    (check for latest version/do nothing if found)
+    Invoke-ElvUICheck -OnlyCheck
+
+    .EXAMPLE
+
+    (check for latest version/install if not installed)
+
+    Invoke-ElvUICheck -InstallIfDoesntExist
+
+    #>
     [cmdletbinding()]
     param(
         [Parameter(
@@ -49,25 +85,32 @@ function Invoke-ElvUiCheck {
     if ($remoteElvUiInfo.Version -gt $localVersion) {
         
         Write-Host `n"New version of ElvUI found! (you have [$localVersion], latest is [$($remoteElvUiInfo.Version)])"`n
-        Write-Host `n"Downloading file from [$($remoteElvUiInfo.DownloadLink)]... to [$localDlPath]"`n        
 
-        Invoke-ElvUiInstall
+        if (!$OnlyCheck) {
+            Write-Host `n"Downloading file from [$($remoteElvUiInfo.DownloadLink)]... to [$localDlPath]"`n        
 
-        Write-Host `n"Verifying local version has been updated..."`n
-                
-        $localVersion = $null
-        $localVersion = Get-LocalElvUiVersion -AddonsFolder $wowInfo.AddonsFolder
+            Invoke-ElvUiInstall
+    
+            Write-Host `n"Verifying local version has been updated..."`n
+                    
+            $localVersion = $null
+            $localVersion = Get-LocalElvUiVersion -AddonsFolder $wowInfo.AddonsFolder
+    
+            if ($localVersion -eq $remoteElvUiInfo.Version) {
+    
+                Write-Host `n"Local version is now the latest [$localVersion]"`n
+    
+            }
+    
+            Write-Host `n"Cleaning up..."`n
+    
+            Invoke-ElvCleanUp -CleanupPath $localDlPath
+            
+        } else {
 
-        if ($localVersion -eq $remoteElvUiInfo.Version) {
+            Write-Host "Run without -OnlyCheck to update!"
 
-            Write-Host `n"Local version is now the latest [$localVersion]"`n
-
-        }
-
-        Write-Host `n"Cleaning up..."`n
-
-        Invoke-ElvCleanUp -CleanupPath $localDlPath
-        
+        }                
 
     } else {
 

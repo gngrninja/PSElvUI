@@ -5,10 +5,12 @@ function Get-RemoteElvUiVersion {
     )
     
     try {
-
+        
         $baseUrl      = 'https://www.tukui.org'
         $downloadPage = "$baseUrl/download.php?ui=elvui"
         $dlString     = '.+Download ElvUI.+'
+
+        Write-Verbose "Attempting to retrieve ElvUI information from [$downloadPage]..."
         $downloadLink = "$baseUrl$(Invoke-WebRequest -Uri $downloadPage | 
                                     Select-Object -ExpandProperty Links | 
                                     Where-Object {

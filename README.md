@@ -8,27 +8,22 @@ Article for this repository:
 ## Getting Started
 You can import the module by using: 
 
-```powershell
-Import-Module .\path\to\PSElvUI.psd1
-```
--or-
-```powershell
-Import-Module .\path\to\FolderModuleFilesAreIn
-```
--or-
-
 Via the PowerShell Gallery:
 
 ```powershell
 Install-Module PSElvUI
 ```
 
-Once it is imported, use...
+-or-
 
 ```powershell
-Get-Help Invoke-ElvUICheck -Detailed 
+Import-Module .\path\to\PSElvUI.psd1
 ```
-...to get all the help goodness.
+-or-
+
+```powershell
+Import-Module .\path\to\FolderModuleFilesAreIn
+```
 
 ## Help / Examples
 Check for update/update if available:
@@ -44,6 +39,12 @@ Invoke-ElvUICheck -OnlyCheck
 Check for update/update if available, or install of not found:
 ```powershell
 Invoke-ElvUICheck -InstallIfDoesntExist
+```
+
+In PowerShell help:
+
+```powershell
+Get-Help Invoke-ElvUICheck -Detailed 
 ```
 
 *Leave an issue here if you have some feedback, issues, or questions.*
