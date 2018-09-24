@@ -28,17 +28,17 @@ Import-Module .\path\to\FolderModuleFilesAreIn
 ## Help / Examples
 Check for update/update if available:
 ```powershell
-Invoke-ElvUICheck 
+Invoke-ElvUICheck -Verbose
 ```
 
 Check for update only, don't do anything else
 ```powershell
-Invoke-ElvUICheck -OnlyCheck
+Invoke-ElvUICheck -OnlyCheck -Verbose
 ```
 
 Check for update/update if available, or install if not found:
 ```powershell
-Invoke-ElvUICheck -InstallIfDoesntExist
+Invoke-ElvUICheck -InstallIfDoesntExist -Verbose
 ```
 
 In PowerShell help:
