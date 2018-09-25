@@ -1,14 +1,22 @@
-# PowerShell -> ElvUI Updater
+PowerShell -> ElvUI Updater
+======
 This module provides an easy way to update/install ElvUI.
-Currently only working on Windows!
-
-Article for this repository:
-...coming soon
+Currently only working on Windows / PowerShell 3.0+
 
 ## Getting Started
-Module Install: 
+### If you've never installed/used a module/script before you must do the following:
 
-Via the PowerShell Gallery:
+1. Run PowerShell as Administrator
+2. Set Execution Policy to RemoteSigned. This will allow local script execution
+    ```powershell
+    Set-ExecutionPolicy RemoteSigned
+    ```
+
+More information on execution policies can be found [here](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-6).
+
+Module Install: 
+------
+#### Via the PowerShell Gallery:
 
 ```powershell
 Install-Module PSElvUI
@@ -25,7 +33,9 @@ Import-Module .\path\to\PSElvUI.psd1
 Import-Module .\path\to\FolderModuleFilesAreIn
 ```
 
-## Help / Examples
+Help / Examples
+------
+
 Check for update/update if available:
 ```powershell
 Invoke-ElvUICheck -Verbose
