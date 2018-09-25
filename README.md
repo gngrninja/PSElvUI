@@ -17,13 +17,13 @@ More information on execution policies can be found [here](https://docs.microsof
 Module Install: 
 ------
 
-#### Via the PowerShell Gallery:
+#### (Best method) Via the PowerShell Gallery:
 
 ```powershell
 Install-Module PSElvUI
 ```
 
--or-
+#### (OR) Downloading this repository locally and extracting it:
 
 ```powershell
 Import-Module .\path\to\PSElvUI.psd1
