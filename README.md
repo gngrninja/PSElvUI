@@ -43,7 +43,7 @@ Check for update/update if available:
 Invoke-ElvUICheck -Verbose
 ```
 
-Check for update only, don't do anything else
+Check for update only, don't do anything else:
 ```powershell
 Invoke-ElvUICheck -OnlyCheck -Verbose
 ```
