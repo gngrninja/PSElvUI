@@ -24,7 +24,7 @@ Module Install:
 Install-Module PSElvUI
 ```
 
-#### (OR) Downloading this repository locally and extracting it:
+#### (OR) Downloading/cloning this repository locally and extracting it:
 
 ```powershell
 Import-Module .\path\to\PSElvUI.psd1
