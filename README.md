@@ -8,9 +8,10 @@ Currently only working on Windows / PowerShell 3.0+
 
 1. Run PowerShell as Administrator
 2. Set Execution Policy to RemoteSigned. This will allow local script execution
-    ```powershell
-    Set-ExecutionPolicy RemoteSigned
-    ```
+
+```powershell
+Set-ExecutionPolicy RemoteSigned
+```
 
 More information on execution policies can be found [here](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-6).
 
