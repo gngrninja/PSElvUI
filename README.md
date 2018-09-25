@@ -7,7 +7,7 @@ Currently only working on Windows / PowerShell 3.0+
 ### If you've never installed/used a module/script before you must do the following:
 
 1. Run PowerShell as Administrator
-2. Set Execution Policy to RemoteSigned. This will allow local script execution
+2. Set Execution Policy to RemoteSigned, as this will allow local script execution
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned
