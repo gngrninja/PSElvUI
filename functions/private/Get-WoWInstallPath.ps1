@@ -9,7 +9,7 @@ function Get-WoWInstallPath {
     try {
 
         $wowInstallPath = (Get-Item 'hklm:\SOFTWARE\WOW6432Node\Blizzard Entertainment\World of Warcraft').GetValue('InstallPath')
-        $addonsFolder   = "$($wowInstallPath)_retail_\Interface\AddOns" 
+        $addonsFolder   = "$($wowInstallPath)Interface\AddOns" 
 
         $wowInstallInfo = [PSCustomObject]@{
 
