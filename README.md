@@ -65,15 +65,6 @@ You can also specify the WoW edition, and use it for classic!
 Invoke-ElvUiCheck -WowEdition Classic -InstallIfDoesntExist -Verbose
 ```
 
-```
-VERBOSE: Attempting to find WoW install path [Classic]...                                                               
-VERBOSE: Attempting to retrieve ElvUI information from [https://www.tukui.org/download.php?ui=elvui]...                 
-VERBOSE: GET https://www.tukui.org/download.php?ui=elvui with 0-byte payload                                            
-VERBOSE: received -byte response of content type text/html                                                                                                            Installing ElvUI...                                                                                                                                                   VERBOSE: GET https://www.tukui.org/downloads/elvui-11.21.zip with 0-byte payload                                        
-VERBOSE: received 3742269-byte response of content type application/zip                                                 
-VERBOSE: Extracting new version to [C:\World of Warcraft\_classic_\Interface\AddOns]...                                 
-```
-
 In PowerShell help:
 
 ```powershell
