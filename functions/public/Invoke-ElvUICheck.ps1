@@ -60,7 +60,7 @@ function Invoke-ElvUiCheck {
             
         )]
         [ValidateSet('Retail','Classic')]
-        $WowEdition
+        $WowEdition = 'Retail'
     )
 
     #Variable setup
