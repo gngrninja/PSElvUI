@@ -12,10 +12,13 @@
     RootModule = '.\PSElvUI.psm1'
     
     # Version number of this module.
-    ModuleVersion = '1.1.0'
+    ModuleVersion = '1.1.1'
     
     # Supported PSEditions
-    # CompatiblePSEditions = @()
+    CompatiblePSEditions = @(
+        'Desktop',
+        'Core'
+    )
     
     # ID used to uniquely identify this module
     GUID = '03125fe8-8e29-4c2b-aa14-fc627bdad365'
