@@ -63,73 +63,90 @@ function Invoke-ElvUiCheck {
         $WowEdition = 'Retail'
     )
 
-    #Variable setup
-    $dlfolder = $env:TEMP
+    begin {
 
-    #Find local WoW install path / local ElvUI Version
-    $wowInfo = Get-WowInstallPath -WowEdition $WowEdition
-
-    #Get remote ElvUI information
-    $remoteElvUiInfo = Get-RemoteElvUiVersion
-    $localDlPath     = "$dlfolder\$($remoteElvUiInfo.FileName)"
-
-    try {
-
-        $localVersion = Get-LocalElvUiVersion -AddonsFolder $wowInfo.AddonsFolder -ErrorAction Stop
+        #Variable setup
+        $dlfolder        = $env:TEMP
+        $wowInfo         = Get-WowInstallPath -WowEdition $WowEdition
+        $remoteElvUiInfo = Get-RemoteElvUiVersion -WowEdition $WowEdition
+        $localDlPath     = "$dlfolder\$($remoteElvUiInfo.FileName)"
 
     }
-    catch {
 
-        if ($InstallIfDoesntExist -and $_.Exception.Message -eq 'ElvUI addon not found!') {
+    process {
 
-            Write-Host `n"Installing ElvUI..."`n
+        try {
+            switch ($WowEdition) {
+                'Classic' {
 
-            Invoke-ElvUiInstall
+                    $localVersion = 0.0 
 
-            break
+                }   
+                'Retail' {
 
-        } else {
+                    $localVersion = Get-LocalElvUiVersion -AddonsFolder $wowInfo.AddonsFolder -ErrorAction Stop
 
-            $errorMessage = $_.Exception.Message 
-            throw "Error determining local version of ElvUI -> [$errorMessage]!"
+                }
+            }                
+        }
+        catch {
+    
+            if ($InstallIfDoesntExist -and $_.Exception.Message -eq 'ElvUI addon not found!') {
+    
+                Write-Host `n"Installing ElvUI..."`n
+    
+                Invoke-ElvUiInstall
+    
+                break
+    
+            } else {
+    
+                $errorMessage = $_.Exception.Message 
+                throw "Error determining local version of ElvUI -> [$errorMessage]!"
+    
+            }  
 
         }
 
-    }
+        if ($remoteElvUiInfo.Version -gt $localVersion) {
         
-    if ($remoteElvUiInfo.Version -gt $localVersion) {
+            Write-Host `n"New version of ElvUI found! (you have [$localVersion], latest is [$($remoteElvUiInfo.Version)])"`n
+    
+            if (!$OnlyCheck) {
+                
+                Write-Host `n"Downloading file from [$($remoteElvUiInfo.DownloadLink)]... to [$localDlPath]"`n        
+    
+                Invoke-ElvUiInstall
         
-        Write-Host `n"New version of ElvUI found! (you have [$localVersion], latest is [$($remoteElvUiInfo.Version)])"`n
-
-        if (!$OnlyCheck) {
-            Write-Host `n"Downloading file from [$($remoteElvUiInfo.DownloadLink)]... to [$localDlPath]"`n        
-
-            Invoke-ElvUiInstall
+                Write-Host `n"Verifying local version has been updated..."`n
+                        
+                $localVersion = $null
+                $localVersion = Get-LocalElvUiVersion -AddonsFolder $wowInfo.AddonsFolder
+        
+                if ($localVersion -eq $remoteElvUiInfo.Version) {
+        
+                    Write-Host `n"Local version is now the latest [$localVersion]"`n
+        
+                }
+        
+                Write-Host `n"Cleaning up..."`n
+        
+                Invoke-ElvCleanUp -CleanupPath $localDlPath
+                
+            } else {
     
-            Write-Host `n"Verifying local version has been updated..."`n
-                    
-            $localVersion = $null
-            $localVersion = Get-LocalElvUiVersion -AddonsFolder $wowInfo.AddonsFolder
+                Write-Host "Run without -OnlyCheck to update!"
     
-            if ($localVersion -eq $remoteElvUiInfo.Version) {
+            }                
     
-                Write-Host `n"Local version is now the latest [$localVersion]"`n
-    
-            }
-    
-            Write-Host `n"Cleaning up..."`n
-    
-            Invoke-ElvCleanUp -CleanupPath $localDlPath
-            
         } else {
-
-            Write-Host "Run without -OnlyCheck to update!"
-
-        }                
-
-    } else {
-
-        Write-Host "ElvUI is already up to date (local [$localVersion]) (remote[$($remoteElvUiInfo.Version)])"
-
+    
+            Write-Host "ElvUI is already up to date (local [$localVersion]) (remote[$($remoteElvUiInfo.Version)])"
+    
+        }
     }
+
+    end {
+
+    }             
 }
