@@ -1,32 +1,67 @@
 function Get-WoWInstallPath {
     [cmdletbinding()]
     param(
-
+        [Parameter(
+            
+        )]
+        [ValidateSet('Retail','Classic')]
+        $WowEdition = 'Retail'
     )
+    
+    
 
-    Write-Verbose "Attempting to find WoW install path..."
+    begin {
 
-    try {
+        Write-Verbose "Attempting to find WoW install path [$($WowEdition)]..."
 
-        $wowInstallPath = (Get-Item 'hklm:\SOFTWARE\WOW6432Node\Blizzard Entertainment\World of Warcraft').GetValue('InstallPath')
-        $addonsFolder   = "$($wowInstallPath)Interface\AddOns" 
+        [string]$regPath = 'hklm:\SOFTWARE\WOW6432Node\Blizzard Entertainment\World of Warcraft'       
 
-        $wowInstallInfo = [PSCustomObject]@{
+    }
 
-            AddonsFolder   = $addonsFolder
-            WowInstallPath = $wowInstallPath
+    process {
 
+        try {
+
+            $wowInstallPath = (Get-Item $regPath).GetValue('InstallPath')
+
+            $base = Split-Path -Path $wowInstallPath
+
+            switch ($WowEdition) {
+
+                'Retail' {
+
+                    $wowInstallPath = "$($base)\_retail_\"
+
+                }
+
+                'Classic' {
+
+                    $wowInstallPath = "$($base)\_classic_\"
+
+                }
+            }
+
+            $addonsFolder   = "$($wowInstallPath)Interface\AddOns" 
+    
+            $wowInstallInfo = [PSCustomObject]@{
+    
+                AddonsFolder   = $addonsFolder
+                WowInstallPath = $wowInstallPath
+    
+            }                            
         }
+    
+        catch {
+    
+            $errorMessage = $_.Exception.Message 
+            throw "Error determining WoW Install Path/ElvUi Version -> [$errorMessage]!"            
+    
+        }
+    }
+    
+    end {
 
         return $wowInstallInfo
-        
-    }
 
-    catch {
-
-        $errorMessage = $_.Exception.Message 
-        throw "Error determining WoW Install Path/ElvUi Version -> [$errorMessage]!"
-        break
-
-    }
+    }   
 }

@@ -17,6 +17,9 @@ function Invoke-ElvUiCheck {
 
     If specified, will only check to see if a newer version is available, but do nothing else
 
+    .PARAMETER WowEdition
+
+    You can specify Classic to install/update ElvUI for WoW classic. Defaults to Retail.
 
     .EXAMPLE
 
@@ -34,6 +37,12 @@ function Invoke-ElvUiCheck {
 
     Invoke-ElvUICheck -InstallIfDoesntExist
 
+    .EXAMPLE
+
+    (check for latest version/install if not installed for Classic WoW)
+
+    Invoke-ElvUICheck -WowEdition Classic -InstallIfDoesntExist -Verbose
+
     #>
     [cmdletbinding()]
     param(
@@ -45,14 +54,20 @@ function Invoke-ElvUiCheck {
         [Parameter(
         )]
         [switch]
-        $OnlyCheck
+        $OnlyCheck,
+
+        [Parameter(
+            
+        )]
+        [ValidateSet('Retail','Classic')]
+        $WowEdition
     )
 
     #Variable setup
     $dlfolder = $env:TEMP
 
     #Find local WoW install path / local ElvUI Version
-    $wowInfo = Get-WowInstallPath
+    $wowInfo = Get-WowInstallPath -WowEdition $WowEdition
 
     #Get remote ElvUI information
     $remoteElvUiInfo = Get-RemoteElvUiVersion

@@ -3,6 +3,8 @@ PowerShell -> ElvUI Updater
 This module provides an easy way to update/install ElvUI.
 Currently only working on Windows / PowerShell 3.0+
 
+You can now specify the edition of WoW, and update retail and classic!
+
 ## Getting Started
 ### If you've never installed/used a module/script before you must do the following:
 
@@ -51,6 +53,20 @@ Invoke-ElvUICheck -OnlyCheck -Verbose
 Check for update/update if available, or install if not found:
 ```powershell
 Invoke-ElvUICheck -InstallIfDoesntExist -Verbose
+```
+
+You can also specify the WoW edition, and use it for classic!
+```powershell
+Invoke-ElvUiCheck -WowEdition Classic -InstallIfDoesntExist -Verbose
+```
+
+```
+VERBOSE: Attempting to find WoW install path [Classic]...                                                               
+VERBOSE: Attempting to retrieve ElvUI information from [https://www.tukui.org/download.php?ui=elvui]...                 
+VERBOSE: GET https://www.tukui.org/download.php?ui=elvui with 0-byte payload                                            
+VERBOSE: received -byte response of content type text/html                                                                                                            Installing ElvUI...                                                                                                                                                   VERBOSE: GET https://www.tukui.org/downloads/elvui-11.21.zip with 0-byte payload                                        
+VERBOSE: received 3742269-byte response of content type application/zip                                                 
+VERBOSE: Extracting new version to [C:\World of Warcraft\_classic_\Interface\AddOns]...                                 
 ```
 
 In PowerShell help:
