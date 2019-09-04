@@ -1,9 +1,14 @@
 PowerShell -> ElvUI Updater
 ======
 This module provides an easy way to update/install ElvUI.
-Currently only working on Windows / PowerShell 3.0+
+
+Currently only working on Windows / PowerShell 5.1+
 
 You can now specify the edition of WoW, and update retail and classic!
+
+I highly reccommend installing PowerShell core, from here: https://github.com/PowerShell/PowerShell
+
+If you are using the built-in version (Desktop), make sure you've launched old-school Internet Explorer (Start/Windows Key -> iexplore.exe), and have accepted the default prompt. Otherwise you may receive an error.
 
 ## Getting Started
 ### If you've never installed/used a module/script before you must do the following:

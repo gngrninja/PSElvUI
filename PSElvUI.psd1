@@ -36,7 +36,7 @@
     Description = 'This module provides an easy way to update/install ElvUI. Currently only working on Windows! Github repo:'
     
     # Minimum version of the Windows PowerShell engine required by this module
-    PowerShellVersion = '3.0'
+    PowerShellVersion = '5.1'
     
     # Name of the Windows PowerShell host required by this module
     # PowerShellHostName = ''
