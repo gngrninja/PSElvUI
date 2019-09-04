@@ -45,6 +45,8 @@ Import-Module .\path\to\FolderModuleFilesAreIn
 Help / Examples
 ------
 
+![examples](https://raw.githubusercontent.com/gngrninja/PSElvUI/media/examples.PNG)
+
 Check for update/update if available:
 ```powershell
 Invoke-ElvUICheck -Verbose
