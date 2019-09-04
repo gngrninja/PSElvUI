@@ -45,7 +45,7 @@ Import-Module .\path\to\FolderModuleFilesAreIn
 Help / Examples
 ------
 
-![examples](https://raw.githubusercontent.com/gngrninja/PSElvUI/media/examples.PNG)
+![examples](https://github.com/gngrninja/PSElvUI/blob/master/media/examples.PNG?raw=true)
 
 Check for update/update if available:
 ```powershell
