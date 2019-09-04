@@ -6,7 +6,7 @@ Currently only working on Windows / PowerShell 5.1+
 
 You can now specify the edition of WoW, and update retail and classic!
 
-I highly reccommend installing PowerShell core, from here: https://github.com/PowerShell/PowerShell
+I highly recommend installing PowerShell core, from here: https://github.com/PowerShell/PowerShell
 
 If you are using the built-in version (Desktop), make sure you've launched old-school Internet Explorer (Start/Windows Key -> iexplore.exe), and have accepted the default prompt. Otherwise you may receive an error.
 
