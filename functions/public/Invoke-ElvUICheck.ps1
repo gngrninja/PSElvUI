@@ -79,7 +79,7 @@ function Invoke-ElvUiCheck {
             switch ($WowEdition) {
                 'Classic' {
 
-                    $localVersion = 0.0 
+                    $localVersion = Get-LocalElvUiVersion -AddonsFolder $wowInfo.AddonsFolder -ErrorAction Stop
 
                 }   
                 'Retail' {

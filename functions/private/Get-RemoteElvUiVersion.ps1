@@ -10,11 +10,15 @@ function Get-RemoteElvUiVersion {
     
     try {        
         switch ($WowEdition) {
-            'Classic' {            
+            'Classic' {      
+                $verCheckUrl = 'https://www.tukui.org/classic-addons.php?id=2'
+                $vercheckContent = Invoke-WebRequest -Uri $verCheckUrl
+                $match = "Version \d+\.\d+"
+                [double]$version = $([Regex]::Matches($vercheckContent, $match))[0].Value.Split(' ')[1]      
                 $remoteElvInfo = [PSCustomObject]@{
             
                     FileName     = "elv_classic.zip"
-                    Version      = 1.0
+                    Version      = $version
                     DownloadLink = "https://www.tukui.org/classic-addons.php?download=2"
             
                 }
