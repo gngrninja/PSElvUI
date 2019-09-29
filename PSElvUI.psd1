@@ -12,7 +12,7 @@
     RootModule = '.\PSElvUI.psm1'
     
     # Version number of this module.
-    ModuleVersion = '1.1.3'
+    ModuleVersion = '1.1.4'
     
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '5.1'
