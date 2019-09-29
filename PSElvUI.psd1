@@ -12,7 +12,7 @@
     RootModule = '.\PSElvUI.psm1'
     
     # Version number of this module.
-    ModuleVersion = '1.1.2'
+    ModuleVersion = '1.1.3'
     
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '5.1'
@@ -36,7 +36,7 @@
     Copyright = '(c) 2018 Mike Roberts'
     
     # Description of the functionality provided by this module
-    Description = 'This module provides an easy way to update/install ElvUI. Currently only working on Windows! Github repo:'
+    Description = 'This module provides an easy way to update/install ElvUI. Currently only working on Windows! Github repo: https://github.com/gngrninja/PSElvUI'
                 
     # Name of the Windows PowerShell host required by this module
     # PowerShellHostName = ''
@@ -98,7 +98,7 @@
         PSData = @{
     
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags = @('wow','game','updater')
+            Tags = @('wow','game','updater','elvui')
     
             # A URL to the license for this module.
             # LicenseUri = ''
