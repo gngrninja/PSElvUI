@@ -7,7 +7,7 @@ function Get-RemoteElvUiVersion {
         [ValidateSet('Retail','Classic')]
         $WowEdition = 'Retail'
     )
-    
+        
     try {        
         switch ($WowEdition) {
             'Classic' {      

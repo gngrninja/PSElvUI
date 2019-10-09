@@ -33,7 +33,7 @@
     CompanyName = 'Ginger Ninja'
     
     # Copyright statement for this module
-    Copyright = '(c) 2018 Mike Roberts'
+    Copyright = '(c) 2019 Mike Roberts'
     
     # Description of the functionality provided by this module
     Description = 'This module provides an easy way to update/install ElvUI. Currently only working on Windows! Github repo: https://github.com/gngrninja/PSElvUI'
