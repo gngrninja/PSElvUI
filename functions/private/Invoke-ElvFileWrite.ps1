@@ -8,6 +8,16 @@ function Invoke-ElvFileWrite {
         $FileContent
     )
 
-    [io.file]::WriteAllBytes($Path, $FileContent)
+    begin {
 
+    }
+
+    process {
+        [io.file]::WriteAllBytes($Path, $FileContent)
+    }
+
+    end {
+
+    }
+    
 }
