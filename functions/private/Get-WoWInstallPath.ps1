@@ -7,9 +7,7 @@ function Get-WoWInstallPath {
         [ValidateSet('Retail','Classic')]
         $WowEdition = 'Retail'
     )
-    
-    
-
+        
     begin {
 
         Write-Verbose "Attempting to find WoW install path [$($WowEdition)]..."

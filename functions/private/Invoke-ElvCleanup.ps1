@@ -5,15 +5,25 @@ function Invoke-ElvCleanUp {
         $CleanupPath
     )
 
-    if ((Test-Path -Path $CleanupPath)) {
+    begin {
 
-        Write-Verbose "Removing [$CleanupPath]..."
-        
-        Remove-Item -Path $CleanupPath -Force
+    }
 
-    } else {
+    process {
+        if ((Test-Path -Path $CleanupPath)) {
 
-        Write-Error "File -> [$CleanupPath] not found!"
+            Write-Verbose "Removing [$CleanupPath]..."
+            
+            Remove-Item -Path $CleanupPath -Force
+    
+        } else {
+    
+            Write-Error "File -> [$CleanupPath] not found!"
+    
+        }
+    }
+
+    end {
 
     }
 }
