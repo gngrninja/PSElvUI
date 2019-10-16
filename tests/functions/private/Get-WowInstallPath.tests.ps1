@@ -1,5 +1,10 @@
 InModuleScope PSElvUi {
 
+    $config = [PSCustomObject]@{
+        InstallPath = "$PSScriptRoot$($separator)..$($separator)..$($separator)artifacts$($separator)wow"
+    }
+
+    
     describe 'Get-WowInstallPath (retail)' {
 
         $wowInfo = Get-WowInstallPath -WowEdition 'Retail'

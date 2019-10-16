@@ -11,7 +11,7 @@ function Get-LocalElvUiVersion {
 
         try {
 
-            $toc = Get-Content -Path "$addonsFolder\ElvUI\ElvUI.toc" -ErrorAction Stop
+            $toc = Get-Content -Path "$addonsFolder$($separator)ElvUI$($separator)ElvUI.toc" -ErrorAction Stop
 
             $toc | ForEach-Object {
 

@@ -64,13 +64,23 @@ function Invoke-ElvUiCheck {
     )
 
     begin {
-
         #Variable setup
-        $dlfolder        = $env:TEMP
-        $wowInfo         = Get-WowInstallPath -WowEdition $WowEdition
-        $remoteElvUiInfo = Get-RemoteElvUiVersion -WowEdition $WowEdition
-        $localDlPath     = "$dlfolder\$($remoteElvUiInfo.FileName)"
+        if ($IsLinux) {
+            if (!(Test-Path -Path $defaultPSElvUIDir -ErrorAction SilentlyContinue)) {
+                Write-Verbose "Creating directory [$($defaultPSElvUIDir)]..."
+                New-Item -ItemType Directory -Path $defaultPSElvUIDir
+                New-Item -ItemType File -Path $defaultPSElvUIDir -Name 'config.json'
+            }
+            $script:config = Get-Content -Path "$($defaultPSElvUIDir)$($separator)config.json" | ConvertFrom-Json
+            $dlfolder = $defaultPSElvUIDir
+            
+        } else {
+            $dlfolder = $env:TEMP
+        }
 
+        $wowInfo = Get-WowInstallPath -WowEdition $WowEdition
+        $remoteElvUiInfo = Get-RemoteElvUiVersion -WowEdition $WowEdition
+        $localDlPath = "$dlfolder$($separator)$($remoteElvUiInfo.FileName)"
     }
 
     process {
