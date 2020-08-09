@@ -4,14 +4,13 @@ This module provides an easy way to update/install ElvUI.
 
 Currently only working on Windows / PowerShell 5.1+
 
-You can now specify the edition of WoW, and update retail and classic!
+You can now specify the edition of WoW, and update both retail and classic!
 
-I highly recommend installing PowerShell core, from here: https://github.com/PowerShell/PowerShell
-
-If you are using the built-in version (Desktop), make sure you've launched old-school Internet Explorer (Start/Windows Key -> iexplore.exe), and have accepted the default prompt. Otherwise you may receive an error.
+I highly recommend installing PowerShell Core, from here: https://github.com/PowerShell/PowerShell
 
 ## Getting Started
-### If you've never installed/used a module/script before you must do the following:
+### Windows PowerShell/Desktop Edition Preconfiguration (Core users can skip this, and start at Module Install below)
+#### If you've never installed/used a module/script before you must do the following:
 
 1. Run PowerShell as Administrator
 2. Set Execution Policy to RemoteSigned, as this will allow local script execution
@@ -22,6 +21,8 @@ Set-ExecutionPolicy RemoteSigned
 
 More information on execution policies can be found [here](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-6).
 
+#### If you are using the built-in version (Desktop), make sure you've launched old-school Internet Explorer (Start/Windows Key -> iexplore.exe), and have accepted the default prompt. Otherwise you may receive an error.
+
 Module Install: 
 ------
 
@@ -30,6 +31,9 @@ Module Install:
 ```powershell
 Install-Module PSElvUI
 ```
+
+If you want more information about the PowerShell Gallery, visit this link:
+https://docs.microsoft.com/en-us/powershell/scripting/gallery/getting-started?view=powershell-7#:~:text=To%20install%20a%20package%20from,This%20requires%20an%20administrator%20account.
 
 #### (OR) Downloading/cloning this repository locally and extracting it:
 
@@ -47,14 +51,14 @@ Help / Examples
 
 ![examples](https://github.com/gngrninja/PSElvUI/blob/master/media/examples.PNG?raw=true)
 
-Check for update/update if available:
-```powershell
-Invoke-ElvUICheck -Verbose
-```
-
 Check for update only, don't do anything else:
 ```powershell
 Invoke-ElvUICheck -OnlyCheck -Verbose
+```
+
+Check for update/update if available:
+```powershell
+Invoke-ElvUICheck -Verbose
 ```
 
 Check for update/update if available, or install if not found:
