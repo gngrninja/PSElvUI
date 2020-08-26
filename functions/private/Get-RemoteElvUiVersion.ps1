@@ -9,12 +9,12 @@ function Get-RemoteElvUiVersion {
     )
         
     try {        
+
         switch ($WowEdition) {
+
             'Classic' {      
-                $verCheckUrl = 'https://www.tukui.org/classic-addons.php?id=2'
-                $vercheckContent = Invoke-WebRequest -Uri $verCheckUrl
-                $match = "Version \d+\.\d+"
-                [double]$version = $([Regex]::Matches($vercheckContent.Content, $match))[0].Value.Split(' ')[1]      
+
+                [double]$version = (Invoke-RestMethod -Uri 'https://git.tukui.org/api/v4/projects/913/repository/tags')[0].Name
                 $remoteElvInfo = [PSCustomObject]@{
             
                     FileName     = "elv_classic.zip"
@@ -22,8 +22,11 @@ function Get-RemoteElvUiVersion {
                     DownloadLink = "https://www.tukui.org/classic-addons.php?download=2"
             
                 }
+
             }
+            
             'Retail' {
+
                 $baseUrl      = 'https://www.tukui.org'
                 $downloadPage = "$baseUrl/download.php?ui=elvui"
                 $dlString     = '.+Download ElvUI.+'
@@ -47,15 +50,15 @@ function Get-RemoteElvUiVersion {
             
                 }
             }
-
         }
-
     
         return $remoteElvInfo 
 
     }
     catch {
+
         $errorMessage = $_.Exception.Message
         throw "Error getting remote ElvUI Information -> [$errorMessage]"
+
     }
 }
