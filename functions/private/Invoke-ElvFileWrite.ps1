@@ -13,11 +13,12 @@ function Invoke-ElvFileWrite {
     }
 
     process {
+
         [io.file]::WriteAllBytes($Path, $FileContent)
+
     }
 
     end {
 
-    }
-    
+    } 
 }

@@ -10,7 +10,8 @@ function Invoke-ElvCleanUp {
     }
 
     process {
-        if ((Test-Path -Path $CleanupPath)) {
+
+        if ((Test-Path -Path $CleanupPath)) {            
 
             Write-Verbose "Removing [$CleanupPath]..."
             
