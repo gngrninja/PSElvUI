@@ -19,23 +19,34 @@ function Get-WoWInstallPath {
     process {
 
         try {
+            
             if (!$IsLinux)  {
 
                 $wowInstallPath = (Get-Item $regPath).GetValue('InstallPath')
                 $base = Split-Path -Path $wowInstallPath                
                 
             } else {
+
                 if (!$config.InstallPath) {
+
                     do {
+
                         $base = Read-Host "Wow install path?"
+
                     } until (Test-Path -Path $base)
 
                     $configExport = [PSCustomObject]@{
+
                         InstallPath = $base
+
                     }
+
                     $configExport | ConvertTo-Json -Depth 2 | Out-File -FilePath "$($defaultPSElvUIDir)$($separator)config.json"
+
                 } else {
+
                     $base = $config.InstallPath
+
                 }
             }    
             switch ($WowEdition) {
@@ -52,6 +63,7 @@ function Get-WoWInstallPath {
 
                 }
             }
+
             $addonsFolder   = "$($wowInstallPath)Interface$($separator)AddOns"                 
             $wowInstallInfo = [PSCustomObject]@{
     

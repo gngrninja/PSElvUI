@@ -14,15 +14,14 @@ function Get-RemoteElvUiVersion {
 
             'Classic' {      
 
-                [double]$version = (Invoke-RestMethod -Uri 'https://git.tukui.org/api/v4/projects/913/repository/tags')[0].Name
-                $remoteElvInfo = [PSCustomObject]@{
+                [double]$version = (Invoke-RestMethod -Uri 'https://git.tukui.org/api/v4/projects/913/repository/tags')[0].Name                
+                $remoteElvInfo   = [PSCustomObject]@{
             
                     FileName     = "elv_classic.zip"
                     Version      = $version
                     DownloadLink = "https://www.tukui.org/classic-addons.php?download=2"
             
                 }
-
             }
             
             'Retail' {
@@ -32,6 +31,7 @@ function Get-RemoteElvUiVersion {
                 $dlString     = '.+Download ElvUI.+'
         
                 Write-Verbose "Attempting to retrieve ElvUI information from [$downloadPage]..."
+                
                 $downloadLink = "$baseUrl$(Invoke-WebRequest -Uri $downloadPage | 
                                             Select-Object -ExpandProperty Links | 
                                             Where-Object {
