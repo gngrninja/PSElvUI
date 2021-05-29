@@ -4,7 +4,7 @@ function Get-WoWInstallPath {
         [Parameter(
             
         )]
-        [ValidateSet('Retail','Classic')]
+        [ValidateSet('Retail','Classic','TBC')]
         $WowEdition = 'Retail'
     )
         
@@ -49,6 +49,7 @@ function Get-WoWInstallPath {
 
                 }
             }    
+
             switch ($WowEdition) {
     
                 'Retail' {
@@ -59,12 +60,19 @@ function Get-WoWInstallPath {
 
                 'Classic' {
 
+                    $wowInstallPath = "$($base)$($separator)_classic_era_$($separator)"
+
+                }
+
+                'TBC' {
+
                     $wowInstallPath = "$($base)$($separator)_classic_$($separator)"
 
                 }
             }
 
-            $addonsFolder   = "$($wowInstallPath)Interface$($separator)AddOns"                 
+            $addonsFolder   = "$($wowInstallPath)Interface$($separator)AddOns"
+
             $wowInstallInfo = [PSCustomObject]@{
     
                 AddonsFolder   = $addonsFolder

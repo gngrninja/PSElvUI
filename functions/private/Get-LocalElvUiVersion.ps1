@@ -2,7 +2,10 @@ function Get-LocalElvUiVersion {
     [cmdletbinding()]
     param(
         [string]
-        $addonsFolder
+        $addonsFolder,
+
+        [ValidateSet('Retail','Classic','TBC')]
+        $WowEdition
     )
 
     [double]$localVersion = 0.0
@@ -11,7 +14,27 @@ function Get-LocalElvUiVersion {
 
         try {
 
-            $toc = Get-Content -Path "$addonsFolder$($separator)ElvUI$($separator)ElvUI.toc" -ErrorAction Stop
+            switch ($WowEdition) {
+
+                'Retail' {
+
+                    $toc = Get-Content -Path "$addonsFolder$($separator)ElvUI$($separator)ElvUI.toc" -ErrorAction Stop
+
+                }
+
+                'Classic' {
+
+                    $toc = Get-Content -Path "$addonsFolder$($separator)ElvUI$($separator)ElvUI.toc" -ErrorAction Stop
+
+                }
+
+                'TBC' {
+
+                    $toc = Get-Content -Path "$addonsFolder$($separator)ElvUI$($separator)ElvUI-BCC.toc" -ErrorAction Stop
+
+                }
+            }
+            
 
             $toc | ForEach-Object {
 

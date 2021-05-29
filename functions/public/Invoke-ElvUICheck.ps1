@@ -43,6 +43,12 @@ function Invoke-ElvUiCheck {
 
     Invoke-ElvUICheck -WowEdition Classic -InstallIfDoesntExist -Verbose
 
+    .EXAMPLE
+
+    (check for latest version/install if not installed for TBC)
+
+    Invoke-ElvUICheck -WowEdition TBC -InstallIfDoesntExist -Verbose    
+
     #>
     [cmdletbinding()]
     param(
@@ -59,44 +65,59 @@ function Invoke-ElvUiCheck {
         [Parameter(
             
         )]
-        [ValidateSet('Retail','Classic')]
+        [ValidateSet('Retail','Classic','TBC')]
         $WowEdition = 'Retail'
     )
 
     begin {
         #Variable setup
         if ($IsLinux) {
+
             if (!(Test-Path -Path $defaultPSElvUIDir -ErrorAction SilentlyContinue)) {
+
                 Write-Verbose "Creating directory [$($defaultPSElvUIDir)]..."
                 New-Item -ItemType Directory -Path $defaultPSElvUIDir
                 New-Item -ItemType File -Path $defaultPSElvUIDir -Name 'config.json'
+
             }
+
             $script:config = Get-Content -Path "$($defaultPSElvUIDir)$($separator)config.json" | ConvertFrom-Json
             $dlfolder = $defaultPSElvUIDir
             
         } else {
+
             $dlfolder = $env:TEMP
+
         }
 
         $wowInfo = Get-WowInstallPath -WowEdition $WowEdition
         $remoteElvUiInfo = Get-RemoteElvUiVersion -WowEdition $WowEdition
         $localDlPath = "$dlfolder$($separator)$($remoteElvUiInfo.FileName)"
+
     }
 
     process {
 
         try {
             switch ($WowEdition) {
+
                 'Classic' {
 
-                    $localVersion = Get-LocalElvUiVersion -AddonsFolder $wowInfo.AddonsFolder -ErrorAction Stop
+                    $localVersion = Get-LocalElvUiVersion -AddonsFolder $wowInfo.AddonsFolder -WowEdition $WowEdition -ErrorAction Stop
 
                 }   
                 'Retail' {
 
-                    $localVersion = Get-LocalElvUiVersion -AddonsFolder $wowInfo.AddonsFolder -ErrorAction Stop
+                    $localVersion = Get-LocalElvUiVersion -AddonsFolder $wowInfo.AddonsFolder -WowEdition $WowEdition -ErrorAction Stop
+        
+                }
+
+                'TBC' {
+
+                    $localVersion = Get-LocalElvUiVersion -AddonsFolder $wowInfo.AddonsFolder -WowEdition $WowEdition -ErrorAction Stop
 
                 }
+
             }                
         }
         catch {
