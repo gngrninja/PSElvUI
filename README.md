@@ -66,7 +66,12 @@ Check for update/update if available, or install if not found:
 Invoke-ElvUICheck -InstallIfDoesntExist -Verbose
 ```
 
-You can also specify the WoW edition, and use it for classic!
+You can also specify the WoW edition, and use it for TBC!
+```powershell
+Invoke-ElvUiCheck -WowEdition TBC -InstallIfDoesntExist -Verbose
+```
+
+For classic, use the following command:
 ```powershell
 Invoke-ElvUiCheck -WowEdition Classic -InstallIfDoesntExist -Verbose
 ```

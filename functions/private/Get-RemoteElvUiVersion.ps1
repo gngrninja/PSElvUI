@@ -4,7 +4,7 @@ function Get-RemoteElvUiVersion {
         [Parameter(
 
         )]
-        [ValidateSet('Retail','Classic')]
+        [ValidateSet('Retail','Classic','TBC')]
         $WowEdition = 'Retail'
     )
         
@@ -14,12 +14,24 @@ function Get-RemoteElvUiVersion {
 
             'Classic' {      
 
-                [double]$version = (Invoke-RestMethod -Uri 'https://git.tukui.org/api/v4/projects/913/repository/tags')[0].Name                
+                [double]$version = (Invoke-RestMethod -Uri 'https://git.tukui.org/elvui/elvui-classic/-/tags?format=atom')[0].title                
                 $remoteElvInfo   = [PSCustomObject]@{
             
                     FileName     = "elv_classic.zip"
                     Version      = $version
                     DownloadLink = "https://www.tukui.org/classic-addons.php?download=2"
+            
+                }
+            }
+
+            'TBC' {
+                                                            
+                [double]$version = (Invoke-RestMethod -Uri 'https://git.tukui.org/elvui/elvui-tbc/-/tags?format=atom')[0].title                
+                $remoteElvInfo   = [PSCustomObject]@{
+            
+                    FileName     = "elv_tbc.zip"
+                    Version      = $version
+                    DownloadLink = "https://www.tukui.org/classic-tbc-addons.php?download=2"
             
                 }
             }
