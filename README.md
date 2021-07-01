@@ -8,6 +8,9 @@ You can now specify the edition of WoW, and update both retail and classic!
 
 I highly recommend installing PowerShell Core, from here: https://github.com/PowerShell/PowerShell
 
+If you get an error checking the local version for any edition, run the command again and it should be good to go.
+Submit an issue if you have any problems.
+
 ## Getting Started
 ### Windows PowerShell/Desktop Edition Preconfiguration (Core users can skip this, and start at Module Install below)
 #### If you've never installed/used a module/script before you must do the following:
