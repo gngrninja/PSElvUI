@@ -152,7 +152,7 @@ function Invoke-ElvUiCheck {
                 Write-Host `n"Verifying local version has been updated..."`n
                         
                 $localVersion = $null
-                $localVersion = Get-LocalElvUiVersion -AddonsFolder $wowInfo.AddonsFolder
+                $localVersion = Get-LocalElvUiVersion -AddonsFolder $wowInfo.AddonsFolder -WowEdition $WowEdition
         
                 if ($localVersion -eq $remoteElvUiInfo.Version) {
         

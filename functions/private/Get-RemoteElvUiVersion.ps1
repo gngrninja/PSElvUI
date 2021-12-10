@@ -14,7 +14,7 @@ function Get-RemoteElvUiVersion {
 
             'Classic' {      
 
-                [double]$version = (Invoke-RestMethod -Uri 'https://git.tukui.org/elvui/elvui-classic/-/tags?format=atom')[0].title                
+                [double]$version = [double]$version = (Invoke-WebRequest 'https://raw.githubusercontent.com/tukui-org/ElvUI/development/ElvUI/ElvUI_Classic.toc' | Select-Object -ExpandProperty Content).Split('##')[3].Split(' ')[2].Trim()               
                 $remoteElvInfo   = [PSCustomObject]@{
             
                     FileName     = "elv_classic.zip"
@@ -26,7 +26,7 @@ function Get-RemoteElvUiVersion {
 
             'TBC' {
                                                             
-                [double]$version = (Invoke-RestMethod -Uri 'https://git.tukui.org/elvui/elvui-tbc/-/tags?format=atom')[0].title                
+                [double]$version = [double]$version = (Invoke-WebRequest 'https://raw.githubusercontent.com/tukui-org/ElvUI/development/ElvUI/ElvUI_TBC.toc' | Select-Object -ExpandProperty Content).Split('##')[3].Split(' ')[2].Trim()            
                 $remoteElvInfo   = [PSCustomObject]@{
             
                     FileName     = "elv_tbc.zip"
