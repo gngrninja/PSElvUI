@@ -20,12 +20,7 @@ function Get-WoWInstallPath {
 
         try {
             
-            if (!$IsLinux)  {
-
-                $wowInstallPath = (Get-Item $regPath).GetValue('InstallPath')
-                $base = Split-Path -Path $wowInstallPath                
-                
-            } else {
+            if ($IsLinux) {
 
                 if (!$config.InstallPath) {
 
@@ -48,7 +43,17 @@ function Get-WoWInstallPath {
                     $base = $config.InstallPath
 
                 }
-            }    
+
+            } elseif ($IsMacOS) {
+                
+                $base = '/Applications/World of Warcraft'
+
+            } else {
+
+                $wowInstallPath = (Get-Item $regPath).GetValue('InstallPath')
+                $base = Split-Path -Path $wowInstallPath   
+                      
+            }  
 
             switch ($WowEdition) {
     

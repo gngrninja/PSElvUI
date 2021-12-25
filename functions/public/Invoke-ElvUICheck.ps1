@@ -86,7 +86,15 @@ function Invoke-ElvUiCheck {
             
         } else {
 
-            $dlfolder = $env:TEMP
+            if ($IsMacOS) {
+
+                $dlfolder = $env:TMPDIR
+
+            } else {
+
+                $dlfolder = $env:TEMP
+
+            }
 
         }
 
