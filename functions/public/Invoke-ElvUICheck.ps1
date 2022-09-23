@@ -45,9 +45,9 @@ function Invoke-ElvUiCheck {
 
     .EXAMPLE
 
-    (check for latest version/install if not installed for TBC)
+    (check for latest version/install if not installed for Wrath)
 
-    Invoke-ElvUICheck -WowEdition TBC -InstallIfDoesntExist -Verbose    
+    Invoke-ElvUICheck -WowEdition Wrath -InstallIfDoesntExist -Verbose    
 
     #>
     [cmdletbinding()]
@@ -65,7 +65,7 @@ function Invoke-ElvUiCheck {
         [Parameter(
             
         )]
-        [ValidateSet('Retail','Classic','TBC')]
+        [ValidateSet('Retail','Classic','Wrath')]
         $WowEdition = 'Retail'
     )
 
@@ -99,7 +99,7 @@ function Invoke-ElvUiCheck {
         }
 
         $wowInfo = Get-WowInstallPath -WowEdition $WowEdition
-        $remoteElvUiInfo = Get-RemoteElvUiVersion -WowEdition $WowEdition
+        $remoteElvUiInfo = Get-RemoteElvUiVersion
         $localDlPath = "$dlfolder$($separator)$($remoteElvUiInfo.FileName)"
 
     }
@@ -120,7 +120,7 @@ function Invoke-ElvUiCheck {
         
                 }
 
-                'TBC' {
+                'Wrath' {
 
                     $localVersion = Get-LocalElvUiVersion -AddonsFolder $wowInfo.AddonsFolder -WowEdition $WowEdition -ErrorAction Stop
 

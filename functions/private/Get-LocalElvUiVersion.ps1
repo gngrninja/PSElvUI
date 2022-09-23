@@ -4,7 +4,7 @@ function Get-LocalElvUiVersion {
         [string]
         $addonsFolder,
 
-        [ValidateSet('Retail','Classic','TBC')]
+        [ValidateSet('Retail','Classic','Wrath')]
         $WowEdition
     )
 
@@ -28,9 +28,9 @@ function Get-LocalElvUiVersion {
 
                 }
 
-                'TBC' {
+                'Wrath' {
 
-                    $toc = Get-Content -Path "$addonsFolder$($separator)ElvUI$($separator)ElvUI_TBC.toc" -ErrorAction Stop
+                    $toc = Get-Content -Path "$addonsFolder$($separator)ElvUI$($separator)ElvUI_Wrath.toc" -ErrorAction Stop
 
                 }
             }

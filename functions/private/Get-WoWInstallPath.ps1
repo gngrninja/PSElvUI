@@ -4,7 +4,7 @@ function Get-WoWInstallPath {
         [Parameter(
             
         )]
-        [ValidateSet('Retail','Classic','TBC')]
+        [ValidateSet('Retail','Classic','Wrath')]
         $WowEdition = 'Retail'
     )
         
@@ -69,7 +69,7 @@ function Get-WoWInstallPath {
 
                 }
 
-                'TBC' {
+                'Wrath' {
 
                     $wowInstallPath = "$($base)$($separator)_classic_$($separator)"
 

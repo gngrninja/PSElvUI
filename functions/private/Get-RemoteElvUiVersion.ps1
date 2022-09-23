@@ -1,69 +1,34 @@
 function Get-RemoteElvUiVersion {
     [cmdletbinding()]
     param(
-        [Parameter(
-
-        )]
-        [ValidateSet('Retail','Classic','TBC')]
-        $WowEdition = 'Retail'
     )
         
     try {        
+                    
+        $baseUrl      = 'https://www.tukui.org'
+        $downloadPage = "$baseUrl/download.php?ui=elvui"
+        $dlString     = '.+Download ElvUI.+'
 
-        switch ($WowEdition) {
+        Write-Verbose "Attempting to retrieve ElvUI information from [$downloadPage]..."
 
-            'Classic' {      
+        $downloadLink = "$baseUrl$(Invoke-WebRequest -Uri $downloadPage | 
+                                    Select-Object -ExpandProperty Links | 
+                                    Where-Object {
+                                        $_.Outerhtml -match $dlString
+                                    }                                   | 
+                                    Select-Object -ExpandProperty href)" 
 
-                [double]$version = [double]$version = (Invoke-WebRequest 'https://raw.githubusercontent.com/tukui-org/ElvUI/development/ElvUI/ElvUI_Classic.toc' | Select-Object -ExpandProperty Content).Split('##')[3].Split(' ')[2].Trim()               
-                $remoteElvInfo   = [PSCustomObject]@{
-            
-                    FileName     = "elv_classic.zip"
-                    Version      = $version
-                    DownloadLink = "https://www.tukui.org/classic-addons.php?download=2"
-            
-                }
-            }
+        $fileName             = $($downloadLink.Split('/')[4])
+        [double]$elvUiVersion = $fileName.Split('-')[1].Replace('.zip','')
 
-            'TBC' {
-                                                            
-                [double]$version = [double]$version = (Invoke-WebRequest 'https://raw.githubusercontent.com/tukui-org/ElvUI/development/ElvUI/ElvUI_TBC.toc' | Select-Object -ExpandProperty Content).Split('##')[3].Split(' ')[2].Trim()            
-                $remoteElvInfo   = [PSCustomObject]@{
-            
-                    FileName     = "elv_tbc.zip"
-                    Version      = $version
-                    DownloadLink = "https://www.tukui.org/classic-tbc-addons.php?download=2"
-            
-                }
-            }
-            
-            'Retail' {
+        $remoteElvInfo = [PSCustomObject]@{
 
-                $baseUrl      = 'https://www.tukui.org'
-                $downloadPage = "$baseUrl/download.php?ui=elvui"
-                $dlString     = '.+Download ElvUI.+'
-        
-                Write-Verbose "Attempting to retrieve ElvUI information from [$downloadPage]..."
-                
-                $downloadLink = "$baseUrl$(Invoke-WebRequest -Uri $downloadPage | 
-                                            Select-Object -ExpandProperty Links | 
-                                            Where-Object {
-                                                $_.Outerhtml -match $dlString
-                                            }                                   | 
-                                            Select-Object -ExpandProperty href)" 
-            
-                $fileName             = $($downloadLink.Split('/')[4])
-                [double]$elvUiVersion = $fileName.Split('-')[1].Replace('.zip','')
-            
-                $remoteElvInfo = [PSCustomObject]@{
-            
-                    FileName     = $fileName
-                    Version      = $elvUiVersion
-                    DownloadLink = $downloadLink
-            
-                }
-            }
+            FileName     = $fileName
+            Version      = $elvUiVersion
+            DownloadLink = $downloadLink
+
         }
-    
+     
         return $remoteElvInfo 
 
     }
