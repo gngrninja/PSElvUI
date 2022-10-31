@@ -36,7 +36,9 @@ function Get-WoWInstallPath {
 
                     }
 
-                    $configExport | ConvertTo-Json -Depth 2 | Out-File -FilePath "$($defaultPSElvUIDir)$($separator)config.json"
+                    $configExport | 
+                        ConvertTo-Json -Depth 2 | 
+                            Out-File -FilePath "$($defaultPSElvUIDir)$($separator)config.json"
 
                 } else {
 
