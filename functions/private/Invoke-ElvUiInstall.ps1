@@ -8,8 +8,7 @@ function Invoke-ElvUiInstall {
 
     }
 
-    process
-    {
+    process {
         #Download file
         $file = Invoke-WebRequest -Uri $remoteElvUiInfo.DownloadLink    
         

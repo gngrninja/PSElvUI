@@ -9,6 +9,7 @@ function Get-LocalElvUiVersion {
     )
 
     [double]$localVersion = 0.0
+    $toc = [string]::Empty
 
     if ((Test-Path $addonsFolder)) {
 
