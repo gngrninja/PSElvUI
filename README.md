@@ -2,7 +2,7 @@ PowerShell -> ElvUI Updater
 ======
 This module provides an easy way to update/install ElvUI.
 
-Currently only working on Windows / PowerShell 5.1+
+Currently only working on Windows and Linux(beta) on PowerShell 5.1+ (Windows, 7.x on Linux).
 
 You can now specify the edition of WoW, and update both retail and classic!
 
