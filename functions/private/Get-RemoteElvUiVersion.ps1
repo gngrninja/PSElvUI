@@ -4,38 +4,22 @@ function Get-RemoteElvUiVersion {
     )
         
     begin {
-
+        $apiUrl = 'https://api.tukui.org/v1/addon/elvui'
     }
 
     process {
-        try {        
-                    
-            $baseUrl      = 'https://www.tukui.org'
-            $downloadPage = "$baseUrl/download.php?ui=elvui"
-            $dlString     = '.+Download ElvUI.+'
-    
-            Write-Verbose "Attempting to retrieve ElvUI information from [$downloadPage]..."
-    
-            $downloadLink = "$baseUrl$(Invoke-WebRequest -Uri $downloadPage | 
-                                        Select-Object -ExpandProperty Links | 
-                                        Where-Object {
-                                            $_.Outerhtml -match $dlString
-                                        }                                   | 
-                                        Select-Object -ExpandProperty href)" 
-    
-            $fileName             = $($downloadLink.Split('/')[4])
-            [double]$elvUiVersion = $fileName.Split('-')[1].Replace('.zip','')
-    
-            $remoteElvInfo = [PSCustomObject]@{
-    
+        try {                                       
+            $elvInfo              = Invoke-RestMethod -Uri $apiUrl            
+            [double]$elvUiVersion = $elvInfo.version
+            $fileName             = "elvui-$($elvUiVersion).zip"
+
+            $remoteElvInfo = [PSCustomObject]@{    
                 FileName     = $fileName
                 Version      = $elvUiVersion
-                DownloadLink = $downloadLink
-    
+                DownloadLink = $elvInfo.url    
             }
          
-            return $remoteElvInfo 
-    
+            return $remoteElvInfo     
         }
         catch {
     
