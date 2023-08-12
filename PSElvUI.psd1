@@ -12,7 +12,7 @@
     RootModule = '.\PSElvUI.psm1'
     
     # Version number of this module.
-    ModuleVersion = '1.4.0'
+    ModuleVersion = '1.5.0'
     
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '5.1'
@@ -33,7 +33,7 @@
     CompanyName = 'Ginger Ninja'
     
     # Copyright statement for this module
-    Copyright = '(c) 2022 Mike Roberts'
+    Copyright = '(c) 2023 Mike Roberts'
     
     # Description of the functionality provided by this module
     Description = 'This module provides an easy way to update/install ElvUI. Currently only working on Windows! Github repo: https://github.com/gngrninja/PSElvUI'
