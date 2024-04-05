@@ -39,11 +39,15 @@ function Get-LocalElvUiVersion {
 
             $toc | ForEach-Object {
 
-                if ($_ -match "## Version:") {
-        
-                    $localVersion = $_.Split(':')[1].trim()                    
-
+                if ($_ -match "## Version:") {        
+                    $parsedVersion = $_.Split(':')[1].trim()
+                    if ($parsedVersion -match '^v.+') {
+                        $localVersion = $parsedVersion.TrimStart('v').Trim()
+                    } else {
+                        $localVersion = $parsedVersion.Trim()
+                    }
                 }
+                
             }
 
             if ($localVersion -ne 0.0) {
