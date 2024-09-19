@@ -25,7 +25,7 @@ function Get-LocalElvUiVersion {
 
                 'Classic' {
 
-                    $toc = Get-Content -Path "$addonsFolder$($separator)ElvUI$($separator)ElvUI_Classic.toc" -ErrorAction Stop
+                    $toc = Get-Content -Path "$addonsFolder$($separator)ElvUI$($separator)ElvUI_Vanilla.toc" -ErrorAction Stop
 
                 }
 
